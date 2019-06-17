@@ -1,0 +1,104 @@
+<app-navigation></app-navigation>
+
+<!-- BreadCrumb -->
+<div class="ui ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12">
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+</div>
+
+<div class="ui-g header">
+  <div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1  ui-lg-9 ui-lg-offset-1 ui-xl-9 header-title">
+    <div class="title">
+      <b>TICKET</b>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-sm-3 ui-md-2 ui-lg-1 ui-xl-1 header-button">
+    <button pButton class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/ticket/form-ticket"></button>
+  </div>
+</div>
+
+
+<table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-10 ui-lg-offset-1 ui-xl-10 table-bordered">
+  
+  <!-- <div class="ui-g option">
+    <div class="ui-g-12 ui-sm-9 ui-md-10 ui-lg-9 ui-xl-10 option-search">
+      Search
+      <input #gb class="input-search" type="text" pInputText size="50" placeholder="Search by name, username, email">
+    </div>
+    
+  </div> -->
+  
+  <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12">
+    
+    <div class="ui-g-12 ui-md-6 ui-lg-4">
+      <p-dataList [value]="ticketOpen" [paginator]="true" [rows]="5">
+        <p-header>
+          Open Ticket
+        </p-header>
+        <ng-template let-tkt pTemplate="item">
+          <div class="ui-g ui-fluid car-item">
+            <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
+            </div>
+            <div class="ui-g-12 ui-md-9 car-details">
+              <div class="ui-g">
+                <div class="ui-g-10 ui-sm-6" id="title"><b>{{tkt.title}}</b></div>
+                
+                <div class="ui-g-5 ui-sm-6" id="name">{{tkt.customer.name}} </div>
+                <div class="ui-g-7 ui-sm-6" id="name">{{tkt.ticketDate}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataList>
+    </div>
+    
+    <div class="ui-g-12 ui-md-6 ui-lg-4">
+      <p-dataList [value]="ticketClose" [paginator]="true" [rows]="5">
+        <p-header>
+          Close Ticket
+        </p-header>
+        <ng-template let-tkt_close pTemplate="item">
+          <div class="ui-g ui-fluid car-item">
+            <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
+            </div>
+            <div class="ui-g-12 ui-md-9 car-details">
+              <div class="ui-g">
+                <div class="ui-g-10 ui-sm-6" id="title"><b>{{tkt_close.title}}</b></div>
+                
+                <div class="ui-g-5 ui-sm-6" id="name">{{tkt_close.customer.name}} </div>
+                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_close.ticketDate}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataList>
+    </div>
+    
+    <div class="ui-g-12 ui-md-6 ui-lg-4">
+      <p-dataList [value]="ticketReopen" [paginator]="true" [rows]="5">
+        <p-header>
+          RE-Open Ticket
+        </p-header>
+        <ng-template let-tkt_reopen pTemplate="item">
+          <div class="ui-g ui-fluid car-item">
+            <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
+            </div>
+            <div class="ui-g-12 ui-md-9 car-details">
+              <div class="ui-g">
+                <div class="ui-g-10 ui-sm-6" id="title"><b>{{tkt_reopen.title}}</b></div>
+                
+                <div class="ui-g-5 ui-sm-6" id="name">{{tkt_reopen.customer.name}} </div>
+                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_reopen.ticketDate}}</div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataList>
+    </div>
+    
+  </div>
+  
+</table>

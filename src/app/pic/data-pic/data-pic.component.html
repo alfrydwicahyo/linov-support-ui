@@ -1,0 +1,56 @@
+<app-navigation></app-navigation>
+
+<!-- BreadCrumb -->
+<div class="ui ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12">
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+</div>
+
+<div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1  ui-lg-10 ui-lg-offset-1 ui-xl-9 table-bordered">
+  <p-dataGrid [value]="pics" [paginator]="true" [rows]="10">
+    <p-header>
+      <div class="header-title">
+        <b>MAPING PIC</b>
+        <button pButton class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/pic/form-pic"></button>
+      </div>
+    </p-header>
+    
+    <ng-template let-pic pTemplate="item">
+      <div style="padding:5px" class="ui-g-12 ui-md-3">
+        <p-panel [header]="pic.companyCode" [style]="{'text-align':'center'}">
+          <img src="data:image/jpeg;base64,{{pic.image}}" width="60" height="40" style="margin-top: 5px;">
+          <div class="pic-detail" style="margin-top: 15px; font-size: 12px;">{{pic.companyName}}</div>
+          <hr class="ui-widget-content" style="border-top:0">
+          <i class="fa fa-search" (click)="selectPIC(pic)" style="cursor:pointer"></i>
+        </p-panel>
+      </div>
+    </ng-template>
+  </p-dataGrid>
+</div>
+
+<p-dialog header="PIC Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="300" (onAfterHide)="onDialogHide()">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="selectedPIC" style="font-size:13px; padding:15px; margin-top: 5px;">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-12" style="text-align:center">
+        <img src="data:image/jpeg;base64,{{selectedPIC.image}}" width="100"class="border" style="padding: 5px;">
+      </div>
+    </div>
+    <div class="ui-grid-row" style="margin-top: 25px;">
+      <div class="ui-grid-col-5">Code: </div>
+      <div class="ui-grid-col-7">{{selectedPIC.companyCode}}</div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-5">Company: </div>
+      <div class="ui-grid-col-7">{{selectedPIC.companyName}}</div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-5">Agent Name: </div>
+      <div class="ui-grid-col-7">{{selectedPIC.name}}</div>
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-4 ui-lg-4 ui-lg-offset-3" style="margin-top: 20px;">
+        <button pButton type="button" icon="fa-pencil" label="Update" class="ui-button-success" routerLink="/pic/form-pic/{{selectedPIC.id}}"></button>
+      </div>
+    </div>
+    
+  </div>
+</p-dialog>

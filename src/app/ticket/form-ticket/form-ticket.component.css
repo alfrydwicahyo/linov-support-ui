@@ -1,0 +1,22 @@
+#form {
+    border: none;
+    background: #ffffff;
+    padding-top: 20px;
+}
+
+#form {
+    background: #eeeeee !important;
+}
+
+#input-title {
+    margin-top: 10px;
+}
+
+#input-tag {
+    margin-top: 25px;
+}
+
+.input-editor {
+    margin-top: 20px;
+}
+

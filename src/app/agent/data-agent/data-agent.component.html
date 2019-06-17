@@ -1,0 +1,98 @@
+<app-navigation></app-navigation>
+
+<p-growl [value]="msgs"></p-growl>
+<p-confirmDialog></p-confirmDialog>
+
+<!-- BreadCrumb -->
+<div class="ui ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12">
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+</div>
+
+<div class="ui-g header">
+  <div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1  ui-lg-9 ui-lg-offset-1 ui-xl-9 header-title">
+    <div class="title">
+      <b>MASTER AGENT</b>
+    </div>
+  </div>
+  
+  <div class="ui-g-12 ui-sm-3 ui-md-2 ui-lg-1 ui-xl-1 header-button">
+    <button pButton class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/agent/form-agent"></button>
+  </div>
+</div>
+
+
+<table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-10 ui-lg-offset-1 ui-xl-10 table-bordered">
+  
+  <div class="ui-g option">
+    <div class="ui-g-12 ui-sm-9 ui-md-10 ui-lg-9 ui-xl-10 option-search">
+      Search
+      <input #gb class="input-search" type="text" pInputText size="50" placeholder="Search by name, username, email">
+    </div>
+    
+    <div class="ui-g-12 ui-sm-9 ui-md-10 ui-lg-9 ui-xl-10 option-status">
+      Status
+      <p-radioButton class="btn-status" value="active" label="Active" [(ngModel)]="val" (click)='getDataActive()'></p-radioButton>
+      <p-radioButton class="btn-status" value="nonactive" label="Not Active" [(ngModel)]="val" (click)='getDataNonActive()'></p-radioButton>
+    </div>
+    <!-- {{val}} -->
+    
+    <ng-container *ngIf="val === 'active'">
+      <div class="ui-g-12 ui-sm-9 ui-md-12 ui-lg-12 ui-xl-12">
+        <div class="table-data">
+          
+          <p-dataTable [value]="active" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" 
+          [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)"
+          selectionMode="single" [(selection)]="selectedAgent" dataKey="name"
+          scrollable="true" scrollHeight="400px" [responsive]="true">
+          
+          <p-column header="No" [style]="{'width':'50px'}">
+            <ng-template let-i="rowIndex" pTemplate="body">
+              {{i+1}}
+            </ng-template>
+          </p-column>
+          <p-column field="name" header="Name" [sortable]="true"></p-column>
+          <p-column field="username" header="Username" [sortable]="true" [style]="{'width':'200px'}"></p-column>
+          <p-column field="email" header="Email" [sortable]="true"></p-column>
+          <p-column field="Action" header="Action" [style]="{'width':'150px'}">    
+            <ng-template type="body" let-col let-agn="rowData" let-ri="rowIndex" pTemplate>
+              <button pButton type="button" icon="fa-pencil" class="ui-button-success" routerLink="/agent/form-agent/{{agn.id}}"></button>
+              <button pButton type="button" (click)="confirmDeleteActive(agn)" icon="fa-trash"  class="ui-button-danger"></button>
+            </ng-template> </p-column>
+          </p-dataTable>
+        </div>
+      </div>
+    </ng-container>
+    
+    <ng-container *ngIf="val === 'nonactive'">
+      <div class="ui-g-12 ui-sm-9 ui-md-12 ui-lg-12 ui-xl-12">
+        <div class="table-data">
+          
+          <p-dataTable [value]="nonactive" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" 
+          [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)"
+          selectionMode="single" [(selection)]="selectedAgent" dataKey="name"
+          scrollable="true" scrollHeight="400px" [responsive]="true">
+          
+          <p-column header="No" [style]="{'width':'50px'}">
+            <ng-template let-i="rowIndex" pTemplate="body">
+              {{i+1}}
+            </ng-template>
+          </p-column>
+          <p-column field="name" header="Name" [sortable]="true"></p-column>
+          <p-column field="username" header="Username" [sortable]="true" [style]="{'width':'200px'}"></p-column>
+          <p-column field="email" header="Email" [sortable]="true"></p-column>
+          <p-column field="Action" header="Action" [style]="{'width':'150px'}">    
+            <ng-template type="body" let-col let-agn="rowData" let-ri="rowIndex" pTemplate>
+              <button pButton type="button" icon="fa-pencil" class="ui-button-success" routerLink="/agent/form-agent/{{agn.id}}"></button>
+              <button pButton type="button" (click)="confirmDeleteNonActive(agn)" icon="fa-trash"  class="ui-button-danger"></button>
+            </ng-template> </p-column>
+          </p-dataTable>
+        </div>
+      </div>
+    </ng-container>
+    
+  </div>
+  
+</table>
+
+
+
