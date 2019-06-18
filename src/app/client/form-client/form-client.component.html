@@ -83,9 +83,44 @@
           <div class="form-group">
             <button pButton class="btnAdd" type="button" (click)="addCustomer()" icon="fa-users" label="Add Customer"></button>
           </div>
+          
+          <!-- Table -->
+          
+          <!-- <p-dataTable [value]="cusForm">
+            <p-column field="i+1" header="Nomer"></p-column>
+            <p-column field="custForm.username" header="Username"></p-column>
+            <p-column field="name" header="Name"></p-column>
+            <p-column field="email" header="Email"></p-column>
+            <p-column field="position" header="Position"></p-column>
+          </p-dataTable> -->
+          
+          <table class="table table-light">
+            <thead class="thead-light">
+              <tr>
+                <th>No</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let cus of cusForm; let i=index">
+                <td> {{i+1}}</td>
+                <td> {{cus.username}}</td>
+                <td> {{cus.name}}</td>
+                <td> {{cus.email}}</td>
+                <td> {{cus.position}}</td>
+                <td> <button pButton type="button" (click)="deleteCustomer(i)" icon="fa-trash" label="Delete"  class="ui-button-danger"></button>  </td>
+                
+              </tr>
+            </tbody>
+          </table>
+          
         </div>
         
-        <div class="col-6">
+        <!-- <div class="col-6">
           <div formArrayName="customers"> 
             <div *ngFor = "let cus of cusFormArray.controls; let idx = index" [formGroupName]="idx" class="customer">
               
@@ -124,7 +159,7 @@
           <div class="btnAdd">
             <button pButton class="btnAdd" type="button" (click)="addCustomer()" icon="fa-users" label="Add Customer"></button>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     

@@ -24,6 +24,7 @@ export class FormClientComponent implements OnInit {
   selectedFile: File = null;
   imageSrc: any;
   customer: Customers;
+  cusForm: any[];
 
   constructor
   (private formBuilder: FormBuilder, private http: Http, private confirmationService: ConfirmationService, private URILast: ActivatedRoute) { }
@@ -33,7 +34,6 @@ export class FormClientComponent implements OnInit {
     this.breadCrumb();
     this.addClientForm();
     this.addCustomerForm();
-    
   }
   
   breadCrumb() {
@@ -79,11 +79,14 @@ export class FormClientComponent implements OnInit {
   addCustomer(){
     this.cusFormArray.push(this.formBuilder.group(this.custForm.value));
     this.custForm.reset();
+    this.cusForm = this.clientForm.get('customers').value; 
     document.getElementById('username').focus();
   }
   
-  deleteCustomer(idx: number) {
-    this.cusFormArray.removeAt(idx);
+  deleteCustomer(i: number) {
+    this.cusFormArray.removeAt(i);
+    this.cusForm = this.clientForm.get('customers').value;
+    
   }
   
   private prepareSave(): any {
