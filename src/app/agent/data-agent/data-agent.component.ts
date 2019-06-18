@@ -25,12 +25,14 @@ export class DataAgentComponent implements OnInit {
   delRow: any;
   numRows: any;
   sortF: any;
-  
+ 
+  status: string = 'active';
+
   constructor(private http: Http, private confirmationService: ConfirmationService) { }
   
   ngOnInit() {
     this.breadCrumb();
-    
+    this.getDataActive();
   }
   
   breadCrumb() {

@@ -31,12 +31,12 @@
     
     <div class="ui-g-12 ui-sm-9 ui-md-10 ui-lg-9 ui-xl-10 option-status">
       Status
-      <p-radioButton class="btn-status" value="active" label="Active" [(ngModel)]="val" (click)='getDataActive()'></p-radioButton>
-      <p-radioButton class="btn-status" value="nonactive" label="Not Active" [(ngModel)]="val" (click)='getDataNonActive()'></p-radioButton>
+      <p-radioButton class="btn-status" value="active" label="Active" [(ngModel)]="status" (click)='getDataActive()'></p-radioButton>
+      <p-radioButton class="btn-status" value="nonactive" label="Not Active" [(ngModel)]="status" (click)='getDataNonActive()'></p-radioButton>
     </div>
     <!-- {{val}} -->
     
-    <ng-container *ngIf="val === 'active'">
+    <ng-container *ngIf="status === 'active'">
       <div class="ui-g-12 ui-sm-9 ui-md-12 ui-lg-12 ui-xl-12">
         <div class="table-data">
           
@@ -63,7 +63,7 @@
       </div>
     </ng-container>
     
-    <ng-container *ngIf="val === 'nonactive'">
+    <ng-container *ngIf="status === 'nonactive'">
       <div class="ui-g-12 ui-sm-9 ui-md-12 ui-lg-12 ui-xl-12">
         <div class="table-data">
           

@@ -19,10 +19,12 @@ export class FormClientComponent implements OnInit {
   
   msgs: Message[] = [];
   clientForm: FormGroup;
+  custForm: FormGroup;
   private url = 'http://localhost:8181/company/';
   selectedFile: File = null;
   imageSrc: any;
-  
+  customer: Customers;
+
   constructor
   (private formBuilder: FormBuilder, private http: Http, private confirmationService: ConfirmationService, private URILast: ActivatedRoute) { }
   
@@ -30,6 +32,7 @@ export class FormClientComponent implements OnInit {
     
     this.breadCrumb();
     this.addClientForm();
+    this.addCustomerForm();
     
   }
   
@@ -60,8 +63,13 @@ export class FormClientComponent implements OnInit {
       companyCode: ['', Validators.required],
       companyName: ['', Validators.required],
       address: ['', Validators.required],
-      customers: this.formBuilder.array([])       
+      customers: this.formBuilder.array([]),
+      tes: this.formBuilder.array([])     
     });
+  }
+
+  addCustomerForm(){
+    this.custForm = this.formBuilder.group(new Customers());
   }
   
   get cusFormArray(): FormArray{
@@ -69,8 +77,9 @@ export class FormClientComponent implements OnInit {
   }
   
   addCustomer(){
-    let fg = this.formBuilder.group(new Customers());
-    this.cusFormArray.push(fg);	  
+    this.cusFormArray.push(this.formBuilder.group(this.custForm.value));
+    this.custForm.reset();
+    document.getElementById('username').focus();
   }
   
   deleteCustomer(idx: number) {

@@ -16,6 +16,8 @@
   </div>
 </div>
 
+{{ clientForm.value | json }}
+
 <form [formGroup]="clientForm" class="justify-content-center" (ngSubmit)="confirmCreate(clientForm.value)">
   <table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-3 ui-xl-10 table-bordered">
     
@@ -52,6 +54,34 @@
             
             <img class="view-logo" id="blah" [src]="imageSrc || 'http://simpleicon.com/wp-content/uploads/building-3-150x150.png'" />
             
+          </div>
+          
+          <div [formGroup]="custForm">
+            <div class="form-group">
+              <span class="ui-float-label">
+                <input id="username" type="text" class="form-control" formControlName="username" pInputText > 
+                <label for="float-input">Username</label>
+              </span>
+              
+              <span class="ui-float-label">
+                <input id="float-input" type="text" class="form-control" formControlName="name"  pInputText> 
+                <label for="float-input">Name</label>
+              </span>
+              
+              <span class="ui-float-label">
+                <input id="float-input" type="text" class="form-control" formControlName="email" pInputText> 
+                <label for="float-input" >Email</label>
+              </span>
+              
+              <span class="ui-float-label">
+                <input id="float-input" type="text" class="form-control" formControlName="position" pInputText> 
+                <label for="float-input" >Position</label>
+              </span>    
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <button pButton class="btnAdd" type="button" (click)="addCustomer()" icon="fa-users" label="Add Customer"></button>
           </div>
         </div>
         

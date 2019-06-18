@@ -26,11 +26,13 @@ export class DataClientComponent implements OnInit {
   numRows: any;
   sortF: any;
   
-  
+  status: string = 'active';
+
   constructor(private http: Http, private confirmationService: ConfirmationService) { }
   
   ngOnInit() {
     this.breadCrumb();
+    this.getDataActive();
   }
   
   breadCrumb() {
@@ -123,6 +125,7 @@ export class DataClientComponent implements OnInit {
       this.http.delete(this.url + row.id)
       .subscribe(res => {
         this.getDataNonActive()
+        console.log(this.url + row.id);
       },
       error => {
         console.log(error);

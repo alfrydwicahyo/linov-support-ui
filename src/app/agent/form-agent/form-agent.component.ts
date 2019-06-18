@@ -19,7 +19,7 @@ export class FormAgentComponent implements OnInit {
   
   msgs: Message[] = [];
   agentForm: FormGroup;
-  private url = 'http://localhost:8181/agent/';
+  private url = 'http://192.168.43.76:8181/agent/';
   // selectedFile: File = null;
   getClients: any[];
   
@@ -40,7 +40,7 @@ export class FormAgentComponent implements OnInit {
   }
   
   // getDataClient() {
-  //   this.http.get("http://localhost:8181/company/")
+  //   this.http.get("http://192.168.43.76:8181/company/")
   //   .subscribe(response =>{
   //     this.getClients = response.json();
   //   });
