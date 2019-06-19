@@ -1,3 +1,4 @@
+import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
 import { FormUpdtAgentComponent } from './agent/form-updt-agent/form-updt-agent.component';
 import { InformationComponent } from './information/information.component';
 import { FormPicComponent } from './pic/form-pic/form-pic.component';
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     { path: 'sign-in/agent', component: SigninAgentComponent},
     { path: 'forgot-password', component: ForgetPasswordComponent},
 
-    { path: 'information', component: InformationComponent}
+    { path: 'information', component: InformationComponent},
+    { path: 'ticket/detail/:id', component: DetailTicketComponent }
 ];
 
 @NgModule({

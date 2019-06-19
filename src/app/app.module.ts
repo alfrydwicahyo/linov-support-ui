@@ -46,6 +46,7 @@ import { InformationComponent } from './information/information.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormUpdtAgentComponent } from './agent/form-updt-agent/form-updt-agent.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     FormPicComponent,
     InformationComponent,
     FooterComponent,
-    FormUpdtAgentComponent
+    FormUpdtAgentComponent,
+    DetailTicketComponent
   ],
   
   imports: [
