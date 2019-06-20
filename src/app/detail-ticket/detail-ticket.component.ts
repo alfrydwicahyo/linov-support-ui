@@ -15,6 +15,7 @@ export class DetailTicketComponent implements OnInit {
   private url = 'http://localhost:8181/ticket/hdr';
   private idTicket: string;
   private ticket: any;
+  private sender: string = "A";
 
   constructor(private http: Http, private URILast: ActivatedRoute) {
     this.URILast.params.subscribe(param => this.idTicket = param.id)
@@ -34,7 +35,10 @@ export class DetailTicketComponent implements OnInit {
 
   getDataTicket(){
     this.http.get(this.url + '/' + this.idTicket)
-      .subscribe(res => console.log(res.json()))
+      .subscribe(res => {
+        this.ticket = res.json()
+        console.log(res.json())
+      })
   }
 
 }
