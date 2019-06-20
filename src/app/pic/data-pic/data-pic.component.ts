@@ -27,7 +27,7 @@ export class DataPicComponent implements OnInit {
   
   breadCrumb() {
     this.items = [
-      {label:'PIC', url:'http://localhost:4200/pic'}
+      {label:'Mapping', url:'http://localhost:4200/mapping'}
     ];  
     this.home = {icon: 'fa fa-home', url: 'http://localhost:4200/home'};
   }

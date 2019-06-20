@@ -4,7 +4,7 @@
   <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 </div>
 
-<div class="ui-g">
+<div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1 ui-lg-11 ui-lg-offset-1 ui-xl-9 table-bordered">
   <div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1  ui-lg-11 ui-lg-offset-1 ui-xl-9 title">
     <b>{{ticket?.title}}</b>
   </div>
@@ -13,7 +13,7 @@
     <i>tanggal</i>
   </div> -->
   
-  <div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1  ui-lg-1 ui-lg-offset-1 ui-xl-9 form-group status">
+  <div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1 ui-lg-1 ui-lg-offset-1 ui-xl-9 form-group status">
     <select id="my-select" class="custom-select" name="">
       <option>Open</option>
       <option>Close</option>
@@ -25,16 +25,16 @@
     <b>name</b>
   </div>
   
-  <div class="ui-g-12 ui-sm-7 ui-md-8 ui-lg-1 ui-xl-9 tanggal">
+  <div class="ui-g-12 ui-sm-7 ui-md-8 ui-lg-2 ui-xl-9 tanggal">
     <i class="fa fa-calendar-o" aria-hidden="true"></i>
     {{ ticket?.ticketDate | date}}
   </div>
   
 </div>
 
-<table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-8 ui-lg-offset-2 ui-xl-10 table-bordered">
+<table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-11 ui-lg-offset-0 ui-xl-10 table-bordered">
   <ng-container *ngFor="let tkt of ticket?.details">
-    <div class="ui-g header">
+    <!-- <div class="ui-g header">
       <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1  ui-lg-12 ui-lg-offset-0 ui-xl-9 detail-name">
         <b>{{ tkt.sender }}</b>
       </div>
@@ -43,18 +43,40 @@
         <i class="fa fa-calendar-o" aria-hidden="true"></i>
         {{ tkt.messageDate | date }}
       </div>
-    </div>
+    </div> -->
     
     <ng-container *ngIf="tkt.sender === sender ; else elseTemplate">
+      
+      <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-0 ui-xl-9 detail-name header">
+        <b>{{ tkt.sender }}</b>
+        <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
+          {{ tkt.messageDate | date }}
+        </p>
+      </div>
+      
+      <!-- <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-0 ui-xl-9 tanggal header">
+        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+        {{ tkt.messageDate | date }}
+      </div> -->
+      
       <div class="card-body">
         {{ tkt.message }}
       </div>
     </ng-container>
+    
     <ng-template #elseTemplate>
-      <div class="card-body">
+      <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-6 ui-xl-9 detail-name header">
+        <b>{{ tkt.sender }}</b>
+        <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
+          {{ tkt.messageDate | date }}
+        </p>
+      </div>
+      
+      <div class="ui-lg-offset-6 card-body">
         {{ tkt.message }}
       </div>
     </ng-template>
+    
     <!-- <div class="card-body float-right">
       {{ tkt.message }}
     </div> -->

@@ -5,6 +5,7 @@
 
 .status {
     margin-top: -25px;
+    width: 150px;
 }
 
 .name {
@@ -25,10 +26,12 @@
 
 .table-bordered{
     margin-top: 20px;
+    margin-left: 50px;
     margin-bottom: 30px;
     -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
-.input-text {
+.card-body {
+    width: 550px;
 }

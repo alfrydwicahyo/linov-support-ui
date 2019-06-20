@@ -30,9 +30,9 @@ const appRoutes: Routes = [
     { path: 'ticket', component: DataTicketComponent },
     { path: 'ticket/form-ticket', component: FormTicketComponent },
     
-    { path: 'pic', component: DataPicComponent },
-    { path: 'pic/form-pic', component: FormPicComponent},
-    { path: 'pic/form-pic/:id', component: FormPicComponent},
+    { path: 'mapping', component: DataPicComponent },
+    { path: 'mapping/form-mapping', component: FormPicComponent},
+    { path: 'mapping/form-mapping/:id', component: FormPicComponent},
     
     { path: '', component: SigninClientComponent},
     { path: 'sign-in/agent', component: SigninAgentComponent},
