@@ -33,9 +33,9 @@
       <p-radioButton class="btn-status" name="group2" value="active" label="Active" [(ngModel)]="status" (click)='getDataActive()'></p-radioButton>
       <p-radioButton class="btn-status" name="group2" value="nonactive" label="Not Active" [(ngModel)]="status" (click)='getDataNonActive()'></p-radioButton>
     </div>
-  
+    
     <!-- {{val}} -->
-
+    
     <ng-container *ngIf="status === 'active'">
       <div class="ui-g-12 ui-sm-9 ui-md-12 ui-lg-12 ui-xl-12">
         <div class="table-data">
