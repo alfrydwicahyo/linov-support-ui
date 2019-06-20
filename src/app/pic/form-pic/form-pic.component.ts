@@ -22,6 +22,7 @@ export class FormPicComponent implements OnInit {
   getAgent: any[];
   getClient: any[];
   
+  
   idUpdt: any;
 
   selectedCar2: string = '';
@@ -40,7 +41,7 @@ export class FormPicComponent implements OnInit {
       console.log(this.idUpdt);
       this.loadDataMaping();
     } else {
-      console.log(this.idUpdt);
+      console.log(this.idUpdt,'idd');
     }
   }
   

@@ -34,7 +34,7 @@ export class DetailTicketComponent implements OnInit {
 
   getDataTicket(){
     this.http.get(this.url + '/' + this.idTicket)
-      .subscribe(res => this.ticket = res.json())
+      .subscribe(res => console.log(res.json()))
   }
 
 }
