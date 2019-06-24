@@ -42,4 +42,14 @@ export class DetailTicketComponent implements OnInit {
       })
   }
 
+  onChangeStatus(event){
+    let status = event.target.value;
+    let body = {
+      "status": status
+    }
+
+    this.http.patch('http://localhost:8181/ticket/hdr/' + this.idTicket, body)
+    .subscribe(res => console.log(res))
+  }
+
 }

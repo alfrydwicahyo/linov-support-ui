@@ -14,15 +14,16 @@
   </div> -->
   
   <div class="ui-g-12 ui-sm-7 ui-md-8 ui-md-offset-1 ui-lg-1 ui-lg-offset-1 ui-xl-9 form-group status">
-    <select id="my-select" class="custom-select" name="">
-      <option>Open</option>
-      <option>Close</option>
-      <option>Re-Open</option>
+    <select id="my-select" class="custom-select" name="" (change)=onChangeStatus($event)>
+      <option value="{{ticket?.status}}">{{ticket?.status | titlecase }}</option>
+      <option value="open">Open</option>
+      <option value="close">Close</option>
+      <option value="reopen">Re-Open</option>
     </select>
   </div>
   
   <div class="ui-g-12 ui-sm-7 ui-md-8 ui-lg-1 ui-xl-9 name">
-    <b>name</b>
+    <b>{{ticket?.customer.name}}</b>
   </div>
   
   <div class="ui-g-12 ui-sm-7 ui-md-8 ui-lg-2 ui-xl-9 tanggal">

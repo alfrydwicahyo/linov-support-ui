@@ -36,6 +36,8 @@ import { FormClientComponent } from './client/form-client/form-client.component'
 import { DataTicketComponent } from './ticket/data-ticket/data-ticket.component';
 import { FormTicketComponent } from './ticket/form-ticket/form-ticket.component';
 
+import { StorageServiceModule} from 'angular-webstorage-service';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { DataPicComponent } from './pic/data-pic/data-pic.component';
@@ -46,7 +48,6 @@ import { FormPicComponent } from './pic/form-pic/form-pic.component';
 import { InformationComponent } from './information/information.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormUpdtAgentComponent } from './agent/form-updt-agent/form-updt-agent.component';
-import { StorageServiceModule } from 'angular-webstorage-service';
 import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
 
 @NgModule({

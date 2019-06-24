@@ -5,4 +5,9 @@ export interface Session {
     name: String;
     email: String;
     image: String;
+    status : String,
+    position : String,
+    companyName : String,
+    companyCode : String,
+    companyId : String,
 }
