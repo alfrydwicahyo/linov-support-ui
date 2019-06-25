@@ -1,11 +1,12 @@
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/primeng';
+import { MenuItem, ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-data-ticket',
   templateUrl: './data-ticket.component.html',
-  styleUrls: ['./data-ticket.component.css']
+  styleUrls: ['./data-ticket.component.css'],
+  providers: [ConfirmationService]
 })
 export class DataTicketComponent implements OnInit {
   
@@ -18,14 +19,14 @@ export class DataTicketComponent implements OnInit {
   private urlOpen= 'http://localhost:8181/ticket/hdr/status/open/';
   private urlClose= 'http://localhost:8181/ticket/hdr/status/close/';
   private urlReopen= 'http://localhost:8181/ticket/hdr/status/reopen/';
+
+  status: string = 'open';
   
-  constructor(private http: Http) { }
+  constructor(private http: Http, private confirmationService: ConfirmationService) { }
   
   ngOnInit() {
     this.breadCrumb();
     this.getTicketOpen();
-    this.getTicketClose();
-    this.getTicketReopen();
   }
   
   breadCrumb() {
