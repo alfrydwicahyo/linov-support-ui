@@ -27,6 +27,7 @@ export class NavigationComponent implements OnInit {
   logout(){
     this.storage.remove('id');
     this.storage.remove('name');
+    this.storage.remove('role');
     this.router.navigate(['/']);
   }
 

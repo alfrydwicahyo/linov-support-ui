@@ -69,7 +69,7 @@
                 <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_close.id}}"><b>{{tkt_close.title}}</b></a></div>
                 
                 <div class="ui-g-5 ui-sm-6" id="name">{{tkt_close.customer.name}} </div>
-                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_close.ticketDate}}</div>
+                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_close.ticketDate | date}}</div>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@
                 <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_reopen.id}}"><b>{{tkt_reopen.title}}</b></a></div>
                 
                 <div class="ui-g-5 ui-sm-6" id="name">{{tkt_reopen.customer.name}} </div>
-                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_reopen.ticketDate}}</div>
+                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_reopen.ticketDate | date}}</div>
               </div>
             </div>
           </div>
