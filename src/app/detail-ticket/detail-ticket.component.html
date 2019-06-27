@@ -35,30 +35,25 @@
 
 <table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-11 ui-lg-offset-0 ui-xl-10 table-bordered">
   <ng-container *ngFor="let tkt of ticket?.details">
-    <!-- <div class="ui-g header">
-      <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1  ui-lg-12 ui-lg-offset-0 ui-xl-9 detail-name">
-        <b>{{ tkt.sender }}</b>
-      </div>
-      
-      <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1  ui-lg-12 ui-lg-offset-0 ui-xl-9 tanggal">
-        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+    <!-- <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-0 ui-xl-9 detail-name header">
+      <b>{{ tkt.sender }}</b>
+      <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
         {{ tkt.messageDate | date }}
-      </div>
+      </p>
+    </div>
+    
+    <div class="card-body">
+      {{ tkt.message }}
     </div> -->
     
-    <ng-container *ngIf="tkt.sender === sender ; else elseTemplate">
+    <ng-container *ngIf="tkt.sender === defaultSender ; else elseTemplate">
       
       <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-0 ui-xl-9 detail-name header">
-        <b>{{ tkt.sender }}</b>
+        <b>{{ identityAgent }}</b>
         <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
           {{ tkt.messageDate | date }}
         </p>
       </div>
-      
-      <!-- <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-0 ui-xl-9 tanggal header">
-        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-        {{ tkt.messageDate | date }}
-      </div> -->
       
       <div class="card-body">
         {{ tkt.message }}
@@ -67,7 +62,7 @@
     
     <ng-template #elseTemplate>
       <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-6 ui-xl-9 detail-name header">
-        <b>{{ tkt.sender }}</b>
+        <b>{{ identityCustomer }}</b>
         <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
           {{ tkt.messageDate | date }}
         </p>
@@ -106,39 +101,36 @@
 <ng-container *ngIf="role != 'admin'; then thenTemplate; else elseTemplate"></ng-container>
 <ng-template #thenTemplate>
   <section id="kolomJawaban" class="pb-5">
-    
-    <div class="col-sm-8 mx-auto">
-      <div class="card shadow-lg">
-        <div class="card-body">
-          <div class="content-section implementation">
-            
-            <div class="input-editor">
-              <p-editor [(ngModel)]="text" [style]="{'height':'250px'}" class="text-editor">
-                <p-header>
-                  <span class="ql-formats">
-                    <button class="ql-bold" aria-label="Bold"></button>
-                    <button class="ql-italic" aria-label="Italic"></button>
-                    <button class="ql-underline" aria-label="Underline"></button>
-                  </span>
-                </p-header>
-              </p-editor>
+    <form [formGroup]="pesan" (ngSubmit)="sendMessage()">    
+      <div class="col-sm-8 mx-auto">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <div class="content-section implementation">
+              
+              
+              <div class="input-editor">
+                <div class="form-group">
+                  <label for=""></label>
+                  <textarea class="form-control" name="" id="" rows="3" formControlName="message"></textarea>
+                </div>
+              </div>
+              
             </div>
-            
+          </div>
+          
+          <div class="card-footer col-sm-12" align="right">
+            <button pButton type="submit" label="Kirim ke" class="ui-button-success "></button>
           </div>
         </div>
-        
-        <div class="card-footer col-sm-12" align="right">
-          <button pButton type="button" label="Commit" class="ui-button-success "></button>
-        </div>
       </div>
-    </div>
-    
+      
+    </form>
   </section>
 </ng-template>
 <ng-template #elseTemplate>
   
 </ng-template>
 
-<!-- <a (click)="scrollTo('#kolomJawaban')" class="float">
+<a (click)="scrollTo('#kolomJawaban')" class="float">
   <i class="fa fa-reply my-float"></i>
-</a> -->
+</a>
