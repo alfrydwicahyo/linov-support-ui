@@ -11,96 +11,110 @@
       <b>TICKET</b>
     </div>
   </div>
-
+  
   <div class="ui-g-12 ui-sm-3 ui-md-2 ui-lg-1 ui-xl-1 header-button">
-    <button pButton class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/ticket/form-ticket"></button>
+    <button pButton [hidden]="!active" class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/ticket/form-ticket"></button>
   </div>
 </div>
 
 
 <table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-10 ui-lg-offset-1 ui-xl-10 table-bordered">
   
-  <!-- <div class="ui-g option">
+  
+  
+  <div class="ui-g option">
     <div class="ui-g-12 ui-sm-9 ui-md-10 ui-lg-9 ui-xl-10 option-search">
       Search
       <input #gb class="input-search" type="text" pInputText size="50" placeholder="Search by name, username, email">
     </div>
     
-  </div> -->
+    <div class="ui-g-12 ui-sm-9 ui-md-10 ui-lg-9 ui-xl-10 option-status">
+      Status
+      <p-radioButton class="btn-status" name="group2" value="open" label="Open" [(ngModel)]="status" (click)='getTicketOpen()'></p-radioButton>
+      <p-radioButton class="btn-status" name="group2" value="close" label="Close" [(ngModel)]="status" (click)='getTicketClose()'></p-radioButton>
+      <p-radioButton class="btn-status" name="group2" value="reopen" label="Re-Open" [(ngModel)]="status" (click)='getTicketReopen()'></p-radioButton>
+    </div>
+    
+  </div>
   
   <div class="ui-g-12 ui-sm-12 ui-md-12 ui-lg-12 ui-xl-12">
-    
-    <div class="ui-g-12 ui-md-6 ui-lg-4">
-      <p-dataList [value]="ticketOpen" [paginator]="true" [rows]="5">
-        <p-header>
-          Open Ticket
-        </p-header>
-        <ng-template let-tkt pTemplate="item">
-          <div class="ui-g ui-fluid car-item">
-            <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
-            </div>
-            <div class="ui-g-12 ui-md-9 car-details">
-              <div class="ui-g">
-                <div class="ui-g-12 ui-sm-6" id="title"> <a routerLink="/ticket/detail/{{tkt.id}}"><b>{{tkt.title}}</b></a></div>
-                <div class="ui-g-12 ui-sm-6" id="name">{{ tkt.ticketCode }} </div>                
-                <div class="ui-g-5 ui-sm-6" id="name">{{tkt.customer.name}} </div>                
-                <div class="ui-g-7 ui-sm-6" id="name">{{tkt.ticketDate | date}}</div>
+    <ng-container *ngIf="status === 'open'">
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <p-dataList [value]="ticketOpen" [paginator]="true" [rows]="5">
+          <p-header>
+            Open Ticket
+          </p-header>
+          <ng-template let-tkt pTemplate="item">
+            <div class="ui-g ui-fluid car-item">
+              <div class="ui-g-12 ui-md-3" style="text-align:center">
+                <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
+              </div>
+              <div class="ui-g-12 ui-md-9 car-details">
+                <div class="ui-g">
+                  <div class="ui-g-12 ui-sm-6" id="title"> <a routerLink="/ticket/detail/{{tkt.id}}"><b>{{tkt.title}}</b></a></div>
+                  <div class="ui-g-12 ui-sm-6" id="name">{{ tkt.ticketCode }} </div>                
+                  <div class="ui-g-5 ui-sm-6" id="name">{{tkt.customer.name}} </div>                
+                  <div class="ui-g-7 ui-sm-6" id="name">{{tkt.ticketDate | date}}</div>
+                </div>
               </div>
             </div>
-          </div>
-          <hr>
-        </ng-template>
-      </p-dataList>
-    </div>
+            <hr>
+          </ng-template>
+        </p-dataList>
+      </div>
+    </ng-container>
     
-    <div class="ui-g-12 ui-md-6 ui-lg-4">
-      <p-dataList [value]="ticketClose" [paginator]="true" [rows]="5">
-        <p-header>
-          Close Ticket
-        </p-header>
-        <ng-template let-tkt_close pTemplate="item">
-          <div class="ui-g ui-fluid car-item">
-            <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
-            </div>
-            <div class="ui-g-12 ui-md-9 car-details">
-              <div class="ui-g">
-                <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_close.id}}"><b>{{tkt_close.title}}</b></a></div>
-                
-                <div class="ui-g-5 ui-sm-6" id="name">{{tkt_close.customer.name}} </div>
-                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_close.ticketDate | date}}</div>
+    <ng-container *ngIf="status === 'close'">
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <p-dataList [value]="ticketClose" [paginator]="true" [rows]="5">
+          <p-header>
+            Close Ticket
+          </p-header>
+          <ng-template let-tkt_close pTemplate="item">
+            <div class="ui-g ui-fluid car-item">
+              <div class="ui-g-12 ui-md-3" style="text-align:center">
+                <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
+              </div>
+              <div class="ui-g-12 ui-md-9 car-details">
+                <div class="ui-g">
+                  <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_close.id}}"><b>{{tkt_close.title}}</b></a></div>
+                  
+                  <div class="ui-g-5 ui-sm-6" id="name">{{tkt_close.customer.name}} </div>
+                  <div class="ui-g-7 ui-sm-6" id="name">{{tkt_close.ticketDate}}</div>
+                </div>
               </div>
             </div>
-          </div>
-          <hr>
-        </ng-template>
-      </p-dataList>
-    </div>
+            <hr>
+          </ng-template>
+        </p-dataList>
+      </div>
+    </ng-container>
     
-    <div class="ui-g-12 ui-md-6 ui-lg-4">
-      <p-dataList [value]="ticketReopen" [paginator]="true" [rows]="5">
-        <p-header>
-          RE-Open Ticket
-        </p-header>
-        <ng-template let-tkt_reopen pTemplate="item">
-          <div class="ui-g ui-fluid car-item">
-            <div class="ui-g-12 ui-md-3" style="text-align:center">
-              <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
-            </div>
-            <div class="ui-g-12 ui-md-9 car-details">
-              <div class="ui-g">
-                <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_reopen.id}}"><b>{{tkt_reopen.title}}</b></a></div>
-                
-                <div class="ui-g-5 ui-sm-6" id="name">{{tkt_reopen.customer.name}} </div>
-                <div class="ui-g-7 ui-sm-6" id="name">{{tkt_reopen.ticketDate | date}}</div>
+    <ng-container *ngIf="status === 'reopen'">
+      <div class="ui-g-12 ui-md-6 ui-lg-4">
+        <p-dataList [value]="ticketReopen" [paginator]="true" [rows]="5">
+          <p-header>
+            RE-Open Ticket
+          </p-header>
+          <ng-template let-tkt_reopen pTemplate="item">
+            <div class="ui-g ui-fluid car-item">
+              <div class="ui-g-12 ui-md-3" style="text-align:center">
+                <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="40" style="margin-top: 5px;"> -->
+              </div>
+              <div class="ui-g-12 ui-md-9 car-details">
+                <div class="ui-g">
+                  <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_reopen.id}}"><b>{{tkt_reopen.title}}</b></a></div>
+                  
+                  <div class="ui-g-5 ui-sm-6" id="name">{{tkt_reopen.customer.name}} </div>
+                  <div class="ui-g-7 ui-sm-6" id="name">{{tkt_reopen.ticketDate}}</div>
+                </div>
               </div>
             </div>
-          </div>
-          <hr>
-        </ng-template>
-      </p-dataList>
-    </div>
+            <hr>
+          </ng-template>
+        </p-dataList>
+      </div>
+    </ng-container>
     
   </div>
   

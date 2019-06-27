@@ -103,32 +103,42 @@
   </div>
 </div> -->
 
-<section id="form" class="pb-5">
-  
-  <div class="col-sm-8 mx-auto">
-    <div class="card shadow-lg">
-      <div class="card-body">
-        <div class="content-section implementation">
-          
-          <div class="input-editor">
-            <p-editor [(ngModel)]="text" [style]="{'height':'250px'}" class="text-editor">
-              <p-header>
-                <span class="ql-formats">
-                  <button class="ql-bold" aria-label="Bold"></button>
-                  <button class="ql-italic" aria-label="Italic"></button>
-                  <button class="ql-underline" aria-label="Underline"></button>
-                </span>
-              </p-header>
-            </p-editor>
+<ng-container *ngIf="role != 'admin'; then thenTemplate; else elseTemplate"></ng-container>
+<ng-template #thenTemplate>
+  <section id="kolomJawaban" class="pb-5">
+    
+    <div class="col-sm-8 mx-auto">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <div class="content-section implementation">
+            
+            <div class="input-editor">
+              <p-editor [(ngModel)]="text" [style]="{'height':'250px'}" class="text-editor">
+                <p-header>
+                  <span class="ql-formats">
+                    <button class="ql-bold" aria-label="Bold"></button>
+                    <button class="ql-italic" aria-label="Italic"></button>
+                    <button class="ql-underline" aria-label="Underline"></button>
+                  </span>
+                </p-header>
+              </p-editor>
+            </div>
+            
           </div>
-          
+        </div>
+        
+        <div class="card-footer col-sm-12" align="right">
+          <button pButton type="button" label="Commit" class="ui-button-success "></button>
         </div>
       </div>
-      
-      <div class="card-footer col-sm-12" align="right">
-        <button pButton type="button" label="Commit" class="ui-button-success "></button>
-      </div>
     </div>
-  </div>
+    
+  </section>
+</ng-template>
+<ng-template #elseTemplate>
   
-</section>
+</ng-template>
+
+<!-- <a (click)="scrollTo('#kolomJawaban')" class="float">
+  <i class="fa fa-reply my-float"></i>
+</a> -->

@@ -10,11 +10,21 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
 
   private name: String;
+  private activeMenu : Boolean = true;
+
   constructor( private router: Router,@Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
     this.name = this.storage.get('name')
-    console.log(this.storage);
+    if(this.storage.get('role') == "customer"){
+      this.activeMenu = !this.activeMenu;
+    }
+
+    if(this.storage.get('role') == "agent"){
+      this.activeMenu = !this.activeMenu;
+    }
+    
+    console.log('menu status',this.activeMenu);
     this.checkLogin()
   }
 

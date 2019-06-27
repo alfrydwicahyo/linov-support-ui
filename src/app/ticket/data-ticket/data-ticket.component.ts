@@ -1,12 +1,13 @@
 import { Http } from '@angular/http';
-import { Component, OnInit, Inject } from '@angular/core';
-import { MenuItem } from 'primeng/primeng';
+import { Component, OnInit, Inject } from '@angular/core'; 
 import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
+import { MenuItem, ConfirmationService } from 'primeng/primeng';
 
 @Component({
   selector: 'app-data-ticket',
   templateUrl: './data-ticket.component.html',
-  styleUrls: ['./data-ticket.component.css']
+  styleUrls: ['./data-ticket.component.css'],
+  providers: [ConfirmationService]
 })
 export class DataTicketComponent implements OnInit {
   
@@ -23,14 +24,16 @@ export class DataTicketComponent implements OnInit {
   private urlReopen= 'http://localhost:8181/ticket/hdr/status/reopen/';
   private role: String;
   private idUser: String;
+  private active : Boolean = true;
 
   private urlByRole = 'http://localhost:8181/ticket/hdr/'
   
   constructor(private http: Http, @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
+
+  status: string = 'open';
   
   ngOnInit() {
     this.breadCrumb();
-
     this.idUser = this.storage.get('id');
     this.role = this.storage.get('role');
 
@@ -40,11 +43,11 @@ export class DataTicketComponent implements OnInit {
     }else if(this.role == "agent"){
       console.log("ini customer");
     }else{
+      this.active = false;
       console.log("ini admin");
     }
     this.getTicketOpen();
-    this.getTicketClose();
-    this.getTicketReopen();
+    console.log(this.active);
   }
   
   breadCrumb() {
