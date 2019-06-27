@@ -15,15 +15,15 @@
                 <a class="nav-link" routerLink="/ticket"> <i class="fa fa-ticket" aria-hidden="true"></i> Tickets</a>
             </li>
             
-            <li class="nav-item" routerLinkActive="active current">
+            <li class="nav-item" [hidden]="!activeMenu" routerLinkActive="active current">
                 <a class="nav-link" routerLink="/client"> <i class="fa fa-building" aria-hidden="true"></i> Clients</a>
             </li>
             
-            <li class="nav-item" routerLinkActive="active current">
+            <li class="nav-item" [hidden]="!activeMenu" routerLinkActive="active current">
                 <a class="nav-link" routerLink="/agent"> <i class="fa fa-star" aria-hidden="true"></i> Agents</a>
             </li>
             
-            <li class="nav-item" routerLinkActive="active current">
+            <li class="nav-item" [hidden]="!activeMenu" routerLinkActive="active current">
                 <a class="nav-link" routerLink="/mapping"> <i class="fa fa-globe" aria-hidden="true"></i> Mapping</a>
             </li>
         </ul>
@@ -45,8 +45,8 @@
                                     </p>
                                 </div>
                                 <div class="col-lg-8">
-                                    <p class="text-left"><strong>Tembak Mantuls</strong></p>
-                                    <p class="text-left small">Tembak@gmail.com</p>
+                                    <p class="text-left"><strong>{{name}}</strong></p>
+                                    <p class="text-left small">{{email}}</p>
                                     <p class="text-left">
                                         <a routerLink="/information" class="btn btn-primary btn-block btn-sm" icon="fa-info"> <i class="fa fa-info" aria-hidden="true"></i> Information</a>
                                     </p>

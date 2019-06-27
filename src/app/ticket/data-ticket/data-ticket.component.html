@@ -13,7 +13,7 @@
   </div>
   
   <div class="ui-g-12 ui-sm-3 ui-md-2 ui-lg-1 ui-xl-1 header-button">
-    <button pButton class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/ticket/form-ticket"></button>
+    <button pButton [hidden]="!active" class="btn-add" type="button" icon="fa-plus" label="ADD" routerLink="/ticket/form-ticket"></button>
   </div>
 </div>
 

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MenuItem } from 'primeng/primeng';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
+import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-detail-ticket',
@@ -9,47 +11,110 @@ import { Http } from '@angular/http';
   styleUrls: ['./detail-ticket.component.css']
 })
 export class DetailTicketComponent implements OnInit {
-
+  
   private items: MenuItem[];
   home: MenuItem;
   private url = 'http://localhost:8181/ticket/hdr';
+  private urlReply = 'http://localhost:8181/ticket/dtl/';
   private idTicket: string;
   private ticket: any;
-  private sender: string = "A";
-
-  constructor(private http: Http, private URILast: ActivatedRoute) {
+  private sender: string;
+  private role: String;
+  private name: String;
+  private active : Boolean = true;
+  private defaultSender: String = "A";
+  private identityAgent:String;
+  private identityCustomer:String;
+  pesan: FormGroup;
+  
+  constructor(private formBuilder: FormBuilder,private http: Http, private URILast: ActivatedRoute, @Inject(LOCAL_STORAGE) private storage: WebStorageService) {
     this.URILast.params.subscribe(param => this.idTicket = param.id)
   }
-
+  
   ngOnInit() {
+    this.role = this.storage.get('role')
+    if(this.role == "admin"){
+      this.active = false;
+    }
+    
+    if(this.role == "agent"){
+      this.sender = "A";
+    }
+    
+    if(this.role == "customer"){
+      this.sender = "C";
+    }
+    
+    console.log('status sender : ',this.sender);
+    console.log('saya adalah : ',this.role);
     this.breadCrumb()
     this.getDataTicket()
+    this.initForm()
   }
-
+  
   breadCrumb() {
     this.items = [
       {label:'Agent', url:'http://localhost:4200/agent'}
     ];  
     this.home = {icon: 'fa fa-home', url: 'http://localhost:4200/home'};
   }
-
+  
   getDataTicket(){
     this.http.get
     (this.url + '/' + this.idTicket)
-      .subscribe(res => {
-        this.ticket = res.json()
-        console.log(res.json())
-      })
+    .subscribe(res => {
+      if(this.role == "agent"){
+        this.identityAgent = res.json().agent.name;
+        this.identityCustomer = res.json().customer.name;
+        console.log('identity : agent');
+      }
+      
+      if(this.role == "customer"){
+        this.identityAgent = res.json().agent.name;
+        this.identityCustomer = res.json().customer.name;
+        console.log('identity : customer');
+      }
+      
+      this.ticket = res.json()
+      console.log('ini tiket',res.json())
+      
+    })
   }
-
+  
   onChangeStatus(event){
     let status = event.target.value;
     let body = {
       "status": status
     }
-
+    
     this.http.patch('http://localhost:8181/ticket/hdr/' + this.idTicket, body)
     .subscribe(res => console.log(res))
   }
-
+  
+  initForm(){
+    this.pesan = this.formBuilder.group({
+      sender: this.sender,
+      message: ['']
+    })
+  }
+  
+  sendMessage(){
+    let data = new FormData();
+    data.append('detailTicket', JSON.stringify(this.pesan.value));
+    this.http.post(this.urlReply + this.idTicket, data)
+    .subscribe(res => {
+      console.log(res);
+    })
+  }
+  
+  // scrollTo(idName: string):void{
+  //   // const elementList = document.querySelectorAll('.' + idName);
+  //   // const element = elementList[0] as HTMLElement;
+  //   // element.scrollIntoView({behavior: "smooth"})
+  //   let el = document.getElementById(idName);
+  //   el.scrollIntoView();
+  // }
+  
+  
+  
 }

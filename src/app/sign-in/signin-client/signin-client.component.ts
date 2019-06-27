@@ -64,13 +64,18 @@ export class SigninClientComponent implements OnInit {
 
       let id: String = res.json().id;
       let name: String = res.json().name;
+      let email: String = res.json().email;
+      let role: String = res.json().role;
 
       this.storage.set('id',id);
       this.storage.set('name', name);
+      this.storage.set('email', email);
+      this.storage.set('role', role);
       // this.storage.remove('id');
       // this.storage.remove('name');
       this.router.navigate(['/home'])
       console.log(this.storage);
+      console.log(res.json());
       }
     );
 
