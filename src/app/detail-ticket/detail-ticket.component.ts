@@ -50,6 +50,9 @@ export class DetailTicketComponent implements OnInit {
     this.breadCrumb()
     this.getDataTicket()
     this.initForm()
+    setInterval(()=> {
+      this.getDataTicket()
+    },1000)
   }
   
   breadCrumb() {
@@ -103,6 +106,8 @@ export class DetailTicketComponent implements OnInit {
     data.append('detailTicket', JSON.stringify(this.pesan.value));
     this.http.post(this.urlReply + this.idTicket, data)
     .subscribe(res => {
+      this.getDataTicket()
+      this.pesan.reset()
       console.log(res);
     })
   }
