@@ -3,8 +3,7 @@ import { FormUpdtAgentComponent } from './agent/form-updt-agent/form-updt-agent.
 import { InformationComponent } from './information/information.component';
 import { FormPicComponent } from './pic/form-pic/form-pic.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
-import { SigninClientComponent } from './sign-in/signin-client/signin-client.component';
-import { SigninAgentComponent } from './sign-in/signin-agent/signin-agent.component';
+import { SigninClientComponent } from './signin-client/signin-client.component';
 import { DataPicComponent } from './pic/data-pic/data-pic.component';
 import { DataTicketComponent } from './ticket/data-ticket/data-ticket.component';
 import { NgModule } from '@angular/core';
@@ -35,7 +34,6 @@ const appRoutes: Routes = [
     { path: 'mapping/form-mapping/:id', component: FormPicComponent},
     
     { path: '', component: SigninClientComponent},
-    { path: 'sign-in/agent', component: SigninAgentComponent},
     { path: 'forgot-password', component: ForgetPasswordComponent},
 
     { path: 'information', component: InformationComponent},

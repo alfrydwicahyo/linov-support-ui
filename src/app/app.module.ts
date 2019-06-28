@@ -41,8 +41,7 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DataPicComponent } from './pic/data-pic/data-pic.component';
-import { SigninClientComponent } from './sign-in/signin-client/signin-client.component';
-import { SigninAgentComponent } from './sign-in/signin-agent/signin-agent.component';
+import { SigninClientComponent } from './signin-client/signin-client.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { FormPicComponent } from './pic/form-pic/form-pic.component';
 import { InformationComponent } from './information/information.component';
@@ -63,7 +62,6 @@ import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
     DataTicketComponent,
     DataPicComponent,
     SigninClientComponent,
-    SigninAgentComponent,
     ForgetPasswordComponent,
     FormPicComponent,
     InformationComponent,

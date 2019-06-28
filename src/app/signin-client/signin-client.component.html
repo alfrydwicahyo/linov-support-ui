@@ -1,0 +1,25 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<div class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-4 ui-lg-offset-4 ui-xl-10 table-bordered">
+  
+  <h1 class="text-center login-title">Sign In</h1>
+  
+  <div class="logo-title container">
+    <b>LINOV SUPPORT</b>
+  </div>
+  
+  <h1 class="text-center sub-title">
+    Enter your 
+    <strong>username</strong> and 
+    <strong>password</strong>.
+  </h1>
+  
+  <form class="form-signin" [formGroup] = "loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <!-- {{loginForm.value | json}} -->
+    <input class="form-control ui-inputtext" formControlName="username" pinputtext="" placeholder="username" type="text">
+    <input class="form-control ui-inputtext" formControlName="password" pinputtext="" placeholder="password" type="password">
+    <button pButton type="submit" label="SIGN IN"  class="ui-button-info"></button>
+    <a id="helpId" class="input-password form-text text-muted pull-right need-help" routerLink="/forgot-password">Forgot Password?</a>
+  </form>
+  
+</div>
