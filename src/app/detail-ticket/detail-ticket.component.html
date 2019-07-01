@@ -22,7 +22,7 @@
     <b>{{ticket?.customer.name}}</b>
     <b>|</b>
     <i class="fa fa-calendar-o" aria-hidden="true"></i>
-    {{ ticket?.ticketDate | date}}
+    {{ ticket?.ticketDate | date:'MMMM dd, yyyy - hh:mm a':'+0530'}}
   </div>
   
   <div class="ui-g-12 ui-sm-7 ui-md-8 ui-lg-10 ui-lg-offset-1 ui-xl-9 garis">
@@ -40,7 +40,7 @@
         <div class="header-two">
           <b>{{ identityAgent }}</b>
           <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
-            {{ tkt.messageDate | date }}
+            {{ tkt.messageDate | date:'MMMM dd, yyyy - hh:mm a':'+0530' }}
           </p>
         </div>
         <div class="card-body">
@@ -57,7 +57,7 @@
         <div class="header-one">
           <b>{{ identityCustomer }}</b>
           <p><i class="fa fa-calendar-o" aria-hidden="true"></i>
-            {{ tkt.messageDate | date }}
+            {{ tkt.messageDate | date:'MMMM dd, yyyy - hh:mm a':'+0530' }}
           </p>
         </div>
         

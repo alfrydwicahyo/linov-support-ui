@@ -30,21 +30,29 @@
         <label for="float-input">Name</label>
       </span>
       
-      <span class="ui-float-label">
+      <!-- <span class="ui-float-label">
         <input id="float-input" type="text" class="form-control" formControlName="status" pInputText> 
         <label for="float-input">Status</label>
         <small id="helpId" class="form-text text-muted">active or nonactive</small>
       </span>
-      
-      
+    -->
+    
+    <div class="form-group">
+      <small id="helpId" class="form-text text-muted" for="my-select">Status</small>
+      <select id="my-select" class="form-control" formControlName="status">
+        <option value="active">active</option>
+        <option value="nonactive">nonactive</option>
+      </select>
     </div>
     
-    <div class="ui-g footer" align="right">
-      <div class="ui-g-12 ui-sm-7 ui-md-12 ui-lg-12 ui-xl-9 footer-button">
-        <button pButton type="button" label= "Cancel" icon="fa-arrow-circle-left"  class="ui-button-info" routerLink="/agent"> </button>
-        <button pButton type="submit" label="Save" icon="fa-save" class="ui-button-success"></button>        
-      </div>
+  </div>
+  
+  <div class="ui-g footer" align="right">
+    <div class="ui-g-12 ui-sm-7 ui-md-12 ui-lg-12 ui-xl-9 footer-button">
+      <button pButton type="button" label= "Cancel" icon="fa-arrow-circle-left"  class="ui-button-info" routerLink="/agent"> </button>
+      <button pButton type="submit" label="Save" icon="fa-save" class="ui-button-success"></button>        
     </div>
-    
-  </table>
+  </div>
+  
+</table>
 </form>
