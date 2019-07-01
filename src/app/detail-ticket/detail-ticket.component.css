@@ -4,51 +4,70 @@
 }
 
 .status {
-    margin-top: -25px;
+    margin-top: -20px;
+    margin-left: 120px;
     width: 150px;
 }
 
 .name {
     font-size: 14px;
-    margin-top: -18px;
+    margin-top: -13px;
 }
 
-.tanggal {
+/* .tanggal {
     font-size: 14px;
-    margin-top: -18px;   
+    margin-top: -13px;   
+} */
+
+.garis {
+    margin-top: -30px;
 }
 
-.header {
+.header-one {
+    padding-left: 10px;
+    margin-top: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
     box-shadow: 0px 2px #aaaaac;
     transition: 0.5s;
-    background: #d9d9da;
+    background: #428bca;
+    color: #FFF;
 }
 
-.table-bordered{
-    margin-top: 20px;
+.header-two {
+    padding-left: 10px;
+    margin-top: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
+    box-shadow: 0px 2px #aaaaac;
+    transition: 0.5s;
+    background: #42ca7b;
+    color: #FFF;
+}
+
+.border {
     margin-left: 50px;
+    margin-bottom: 50px;
+    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.table-bordered-one{
+    margin-top: 30px;
+    margin-left: 30px;
     margin-bottom: 30px;
     -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
+.table-bordered-two{
+    margin-top: 20px;
+    margin-left: 590px;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
 .card-body {
-    width: 550px;
-}
-
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	background-color:#428bca;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-}
-
-.my-float{
-	margin-top:22px;
+    width: 515px;
 }

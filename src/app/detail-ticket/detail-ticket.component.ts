@@ -57,7 +57,7 @@ export class DetailTicketComponent implements OnInit {
   
   breadCrumb() {
     this.items = [
-      {label:'Agent', url:'http://localhost:4200/agent'}
+      {label:'Ticket', url:'http://localhost:4200/ticket/'}
     ];  
     this.home = {icon: 'fa fa-home', url: 'http://localhost:4200/home'};
   }
