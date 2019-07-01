@@ -115,11 +115,16 @@
                 </div>
               </div>
               
+              <div class="form-group">
+                <label for="">Screenshoot</label>
+                <input type="file" class="form-control-file" (change)="onFileSelected($event)" aria-describedby="fileHelpId">
+                <img [src]="pathImg" *ngIf="pathImg" class="img-fluid rounded" alt="">
+              </div>
             </div>
           </div>
           
           <div class="card-footer col-sm-12" align="right">
-            <button pButton type="submit" label="Kirim ke" class="ui-button-success "></button>
+            <button pButton type="submit" label="Kirim" class="ui-button-success "></button>
           </div>
         </div>
       </div>

@@ -25,7 +25,9 @@ export class DetailTicketComponent implements OnInit {
   private defaultSender: String = "A";
   private identityAgent:String;
   private identityCustomer:String;
-  pesan: FormGroup;
+  private pesan: FormGroup;
+  private selectedFile: File = null;
+  private pathImg: any;
   
   constructor(private formBuilder: FormBuilder,private http: Http, private URILast: ActivatedRoute, @Inject(LOCAL_STORAGE) private storage: WebStorageService) {
     this.URILast.params.subscribe(param => this.idTicket = param.id)
@@ -50,9 +52,9 @@ export class DetailTicketComponent implements OnInit {
     this.breadCrumb()
     this.getDataTicket()
     this.initForm()
-    setInterval(()=> {
-      this.getDataTicket()
-    },1000)
+    // setInterval(()=> {
+    //   this.getDataTicket()
+    // },2000)
   }
   
   breadCrumb() {
@@ -104,12 +106,25 @@ export class DetailTicketComponent implements OnInit {
   sendMessage(){
     let data = new FormData();
     data.append('detailTicket', JSON.stringify(this.pesan.value));
+    data.append('ss',this.selectedFile, this.selectedFile.name)
     this.http.post(this.urlReply + this.idTicket, data)
     .subscribe(res => {
       this.getDataTicket()
       this.pesan.reset()
       console.log(res);
     })
+  }
+
+  onFileSelected(event){
+    let reader = new FileReader();
+    this.selectedFile = <File>event.target.files[0];
+
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = (e) => {
+      this.pathImg = reader.result
+    }
+
+    console.log(event);
   }
   
   // scrollTo(idName: string):void{
