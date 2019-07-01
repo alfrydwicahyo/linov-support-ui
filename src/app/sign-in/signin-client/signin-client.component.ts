@@ -21,7 +21,7 @@ export class SigninClientComponent implements OnInit {
   private url = 'http://localhost:8181/user/login';
   getcus: any[];
   session: Session;
-  
+  private idAgent: string;
   
   
   constructor(private FormBuilder: FormBuilder, private http: Http, private router: Router,@Inject(LOCAL_STORAGE) private storage: WebStorageService) 
@@ -71,47 +71,25 @@ export class SigninClientComponent implements OnInit {
       this.storage.set('name', name);
       this.storage.set('email', email);
       this.storage.set('role', role);
-      // this.storage.remove('id');
-      // this.storage.remove('name');
+
+      if(role == "customer"){
+        let companyId = res.json().companyId;
+        this.getDataCompany(companyId);
+        this.storage.set('companyId',companyId)
+      }
+
       this.router.navigate(['/home'])
       console.log(this.storage);
       console.log(res.json());
       }
     );
-
-      
-     // .map(res => res.json() as Session).subscri
-      // .map(res => res.json() as Session)
-      // .subscribe(res => {
-      //   console.log(res.json());
-      //   this.router.navigate(['/home'])
-      // },error => {
-      //   this.showError()
-      // })
-    // try {
-    //   this.http.post(this.url, data)
-    //   .subscribe 
-    //   (res=> {
-    //     console.log(res);
-    //     this.showSuccess();
-        
-    //     this.router.navigate(['/home'])
-
-    //     console.log(data);
-        
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     this.showError();
-    //   })
-      
-    //   // setTimeout(() => {
-    //   //   alert('done!');
-    //   // }, 1000);
-      
-    // } catch(e) {
-    //   console.log(e);
-    // } 
   }
-  
+  getDataCompany(idCompany){
+    this.http.get('http://localhost:8181/map/company/'+idCompany)
+      .subscribe(res => {
+        this.idAgent = res.json().agent.id;
+        this.storage.set('idAgent',this.idAgent)
+        console.log('Data Agent : ',this.idAgent);
+      })
+  }
 }
