@@ -19,37 +19,22 @@ export class FormTicketComponent implements OnInit {
   private url = 'http://localhost:8181/ticket/hdr/sub/';
   private idCustomer: string;
   public idAgent: String;
+  private selectedFile: File = null;
+  private pathImg: any;
   
   constructor(private formBuilder: FormBuilder, private http: Http, private confirmationService: ConfirmationService, @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
   
   ngOnInit() {
     this.addticketForm()
-    console.log(this.ticketForm.value);
+    this.setArrayMessage()
   }
   
   addticketForm() {
-    this.idCustomer = this.storage.get('id')
-    this.idAgent = this.storage.get('idAgent');
-    // this.ticketForm = this.formBuilder.group({
-    //   agent: [this.idAgent, Validators.required],
-    //   customer: [this.idCustomer, Validators.required],
-    //   title: ['', Validators.required],
-    //   // details: this.formBuilder.group({
-    //   //   message: ['']
-    //   // })
-      
-    //   details: this.formBuilder.group({
-    //     message:['']
-    //   })
-    // });
-
     this.ticketForm = this.formBuilder.group({
       agent : this.formBuilder.group({ id: [this.idAgent]}),
       title : ['',Validators.required],
       customer : this.formBuilder.group({id: [this.idCustomer]}),
-      details: this.formBuilder.array([
-
-      ])
+      details: this.formBuilder.array([])
     });
   }
 
@@ -57,12 +42,29 @@ export class FormTicketComponent implements OnInit {
     return this.ticketForm.get('details') as FormArray
   }
 
-  setMessage(){
+  setArrayMessage(){
     const msg = this.formBuilder.group({
       sender: [this.idCustomer],
       message: ['']
     })
     this.detailsForm.push(msg)
+    console.log(this.ticketForm.value);
+  }
+
+  onFileSelected(event){
+    let reader = new FileReader();
+    this.selectedFile = <File>event.target.files[0];
+
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = (e) => {
+      this.pathImg = reader.result
+    }
+
+    console.log(event);
+  }
+
+  sendMessage(){
+    console.log('message send');
   }
 
   

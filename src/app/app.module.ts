@@ -98,6 +98,7 @@ import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
     DropdownModule,
     StorageServiceModule,
     DataScrollerModule,
+    InputTextareaModule,
     AppRoutingModule
     
   ],
