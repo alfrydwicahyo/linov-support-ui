@@ -1,8 +1,9 @@
 import { ConfirmationService, Message } from 'primeng/primeng';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { Http } from '@angular/http';
+import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 
 
 @Component({
@@ -16,27 +17,70 @@ export class FormTicketComponent implements OnInit {
   msgs: Message[] = [];
   ticketForm: FormGroup;
   private url = 'http://localhost:8181/ticket/hdr/sub/';
+  private idCustomer: string;
+  public idAgent: String;
   
-  constructor(private formBuilder: FormBuilder, private http: Http, private confirmationService: ConfirmationService) { }
+  constructor(private formBuilder: FormBuilder, private http: Http, private confirmationService: ConfirmationService, @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
   
   ngOnInit() {
-    // this.addticketForm();
+    this.addticketForm()
+    console.log(this.ticketForm.value);
   }
   
-  // addticketForm() {
-  //   this.ticketForm = this.formBuilder.group({
-  //     agent: ['c7c22f4b-87c1-428e-a1d2-3e02bfe97b36', Validators.required],
-  //     customer: ['6f2f72df-7f77-4efd-8c34-d84106cf39dc', Validators.required],
-  //     title: ['', Validators.required],
-  //     // details: this.formBuilder.group({
-  //     //   message: ['']
-  //     // })
+  addticketForm() {
+    this.idCustomer = this.storage.get('id')
+    this.idAgent = this.storage.get('idAgent');
+    // this.ticketForm = this.formBuilder.group({
+    //   agent: [this.idAgent, Validators.required],
+    //   customer: [this.idCustomer, Validators.required],
+    //   title: ['', Validators.required],
+    //   // details: this.formBuilder.group({
+    //   //   message: ['']
+    //   // })
       
-  //     details: this.formBuilder.group({
-  //       message:['']
-  //     })
-  //   });
-  // }
+    //   details: this.formBuilder.group({
+    //     message:['']
+    //   })
+    // });
+
+    this.ticketForm = this.formBuilder.group({
+      agent : this.formBuilder.group({ id: [this.idAgent]}),
+      title : ['',Validators.required],
+      customer : this.formBuilder.group({id: [this.idCustomer]}),
+      details: this.formBuilder.array([
+
+      ])
+    });
+  }
+
+  get detailsForm(){
+    return this.ticketForm.get('details') as FormArray
+  }
+
+  setMessage(){
+    const msg = this.formBuilder.group({
+      sender: [this.idCustomer],
+      message: ['']
+    })
+    this.detailsForm.push(msg)
+  }
+
+  
+
+//   "{
+//     ""agent"" : { ""id"" : ""c7ae9c50-5a44-4c0a-8be6-a41632e06edd"" },
+//     ""title"" : ""Input gaji di payroll tidak bisa"",
+//     ""customer"" : { ""id"" : ""05bc076f-cb69-4449-83d9-0c0f53b7c644""},
+//     ""details"" : [{
+//             ""sender"" : ""C"",
+//             ""message"" : ""Selamat pagi Ibu Adira, kenapa data gaji karyawan saya hilang semua Bu?"",
+//             ""messageDate"" : ""2019-05-23T09:05:37""
+//     },{
+//             ""sender"" : ""A"",
+//             ""message"" : ""Mohon maaf sekali Pak Asroful, sistem payroll kami sedang melakukan migrasi database, dari PostgreSQL ke Oracle. Bapak bisa mengeceknya kembali besok jam 12 siang. Ada yang bisa saya bantu lagi?"",
+//             ""messageDate"" : ""2019-05-23T09:18:01""
+//     }]
+// }"
   
   // private prepareSave(): any {
   //   let input = new FormData();

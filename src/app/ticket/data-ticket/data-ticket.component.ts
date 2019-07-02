@@ -40,6 +40,7 @@ export class DataTicketComponent implements OnInit {
 //      this.getTicketByRole(this.role, this.idUser);
       console.log(this.idUser+" - "+this.role,"session");
     }else if(this.role == "agent"){
+      this.active = false;
       console.log("ini customer");
     }else{
       this.active = false;

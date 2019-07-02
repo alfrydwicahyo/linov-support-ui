@@ -28,6 +28,7 @@ export class NavigationComponent implements OnInit {
 
     console.log('menu status',this.activeMenu);
     this.checkLogin()
+    console.log(this.storage);
   }
 
   checkLogin(){
@@ -41,6 +42,8 @@ export class NavigationComponent implements OnInit {
     this.storage.remove('name');
     this.storage.remove('email');
     this.storage.remove('role');
+    this.storage.remove('companyId')
+    this.storage.remove('idAgent')
     this.router.navigate(['/']);
   }
 
