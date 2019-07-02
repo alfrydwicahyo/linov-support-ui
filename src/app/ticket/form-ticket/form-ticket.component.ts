@@ -16,7 +16,7 @@ export class FormTicketComponent implements OnInit {
   
   msgs: Message[] = [];
   ticketForm: FormGroup;
-  private url = 'http://localhost:8181/ticket/hdr/sub/';
+  private url = 'http://localhost:8181/ticket/hdr/';
   private idCustomer: string;
   public idAgent: String;
   private selectedFile: File = null;
@@ -25,6 +25,8 @@ export class FormTicketComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: Http, private confirmationService: ConfirmationService, @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
   
   ngOnInit() {
+    this.idAgent = this.storage.get('idAgent');
+    this.idCustomer = this.storage.get('id');
     this.addticketForm()
     this.setArrayMessage()
   }
@@ -44,7 +46,7 @@ export class FormTicketComponent implements OnInit {
 
   setArrayMessage(){
     const msg = this.formBuilder.group({
-      sender: [this.idCustomer],
+      sender: ['C'],
       message: ['']
     })
     this.detailsForm.push(msg)
@@ -64,37 +66,14 @@ export class FormTicketComponent implements OnInit {
   }
 
   sendMessage(){
-    console.log('message send');
+    let data = new FormData();
+    data.append('ticket', JSON.stringify(this.ticketForm.value));
+    data.append('ss',this.selectedFile, this.selectedFile.name);
+    this.http.post(this.url,data)
+      .subscribe(res => {
+        console.log(res);
+      })
   }
-
-  
-
-//   "{
-//     ""agent"" : { ""id"" : ""c7ae9c50-5a44-4c0a-8be6-a41632e06edd"" },
-//     ""title"" : ""Input gaji di payroll tidak bisa"",
-//     ""customer"" : { ""id"" : ""05bc076f-cb69-4449-83d9-0c0f53b7c644""},
-//     ""details"" : [{
-//             ""sender"" : ""C"",
-//             ""message"" : ""Selamat pagi Ibu Adira, kenapa data gaji karyawan saya hilang semua Bu?"",
-//             ""messageDate"" : ""2019-05-23T09:05:37""
-//     },{
-//             ""sender"" : ""A"",
-//             ""message"" : ""Mohon maaf sekali Pak Asroful, sistem payroll kami sedang melakukan migrasi database, dari PostgreSQL ke Oracle. Bapak bisa mengeceknya kembali besok jam 12 siang. Ada yang bisa saya bantu lagi?"",
-//             ""messageDate"" : ""2019-05-23T09:18:01""
-//     }]
-// }"
-  
-  // private prepareSave(): any {
-  //   let input = new FormData();
-    
-  //   input.append('agent', this.ticketForm.get('agent').value);
-  //   input.append('customer', this.ticketForm.get('customer').value);
-  //   input.append('title', this.ticketForm.get('title').value);
-  //   input.append('message', this.ticketForm.get('message').value);
-    
-  //   console.log(input);
-  //   return input;
-  // }
   
   confirmCreate() {
     this.confirmationService.confirm({
