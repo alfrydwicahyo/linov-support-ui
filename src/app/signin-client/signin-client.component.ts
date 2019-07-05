@@ -80,7 +80,6 @@ export class SigninClientComponent implements OnInit {
 
       this.router.navigate(['/home'])
       console.log(this.storage);
-      console.log(res.json());
       }
     );
   }

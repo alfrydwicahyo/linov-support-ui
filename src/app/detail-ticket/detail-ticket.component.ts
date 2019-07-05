@@ -14,7 +14,8 @@ export class DetailTicketComponent implements OnInit {
   
   private items: MenuItem[];
   home: MenuItem;
-  private url = 'http://localhost:8181/ticket/hdr';
+//  private url = 'http://localhost:8181/ticket/hdr'; // ori
+  private url = 'http://localhost:8181/ticket/hdr/test'; // test
   private urlReply = 'http://localhost:8181/ticket/dtl/';
   private idTicket: string;
   private ticket: any;

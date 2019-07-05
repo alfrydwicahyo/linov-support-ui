@@ -63,6 +63,10 @@
         
         <div class="card-body">
           {{ tkt.message }}
+          <div *ngFor="let ss of tkt.ss; let i=index;">
+            <img src="data:image/jpeg;base64,{{ss.ss}}" class="img-fluid" alt="">
+          </div>
+          
         </div>
       </div>
     </ng-template>
