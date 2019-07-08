@@ -37,7 +37,6 @@ export class DataTicketComponent implements OnInit {
     this.role = this.storage.get('role');
 
     if(this.role == "customer"){
-//      this.getTicketByRole(this.role, this.idUser);
       console.log(this.idUser+" - "+this.role,"session");
     }else if(this.role == "agent"){
       this.active = false;
@@ -56,38 +55,83 @@ export class DataTicketComponent implements OnInit {
     ];  
     this.home = {icon: 'fa fa-home', url: 'http://localhost:4200/home'};
   }
-  
+
   getTicketOpen() {
-    this.http.get(this.urlOpen)
-    .subscribe(response => {
-      this.ticketOpen = response.json();
-      console.log(response.json());
-    })
+    // if(this.role == "agent"){
+    //   this.filterTicket(this.role, this.idUser,"open")
+    // }
+
+    // if(this.role == "customer"){
+    //   this.filterTicket(this.role, this.idUser ,"open")
+    // }
+
+    if(this.role == "admin"){
+      this.http.get(this.urlOpen)
+      .subscribe(response => {
+        this.ticketOpen = response.json();
+        console.log(response.json());
+      })
+    }else{
+      this.filterTicket(this.role, this.idUser ,"open")
+    }
+
   }
   
   getTicketClose() {
+    // if(this.role == "agent"){
+    //   this.filterTicket(this.role, this.idUser,"close")
+    // }
+
+    // if(this.role == "customer"){
+    //   this.filterTicket(this.role, this.idUser ,"close")
+    // }
+
     this.http.get(this.urlClose)
     .subscribe(response => {
       this.ticketClose = response.json();
       console.log(response.json());
     })
+    // if(this.role == "admin"){
+    // }else {
+    //   this.filterTicket(this.role, this.idUser ,"close")
+    // }
   }
 
   getTicketReopen() {
-    this.http.get(this.urlReopen)
-    .subscribe(response => {
-      this.ticketReopen = response.json();
-      console.log(response.json());
-    })
-  }
+    // if(this.role == "agent"){
+    //   this.filterTicket(this.role, this.idUser,"reopen")
+    // }
 
-  getTicketByRole(role: String, id: String){
-    this.http.get(this.urlByRole + role + '/' + id)
-    .subscribe(res => {
-      this.ticketByRole = res.json();
-      console.log(res.json());
-    })
+    // if(this.role == "customer"){
+    //   this.filterTicket(this.role, this.idUser ,"reopen")
+    // }
+
+    if(this.role == "admin"){
+      this.http.get(this.urlReopen)
+      .subscribe(response => {
+        this.ticketReopen = response.json();
+        console.log(response.json());
+      })
+    } else {
+      this.filterTicket(this.role, this.idUser,"reopen")
+    }
   }
   
-  
+  filterTicket(role: String, id: String, status: String){
+    this.http.get('http://localhost:8181/ticket/hdr/'+role+'/'+id+'/'+status)
+    .subscribe(res => {
+      if(status == "open"){
+        this.ticketOpen = res.json();
+        console.log('open',res.json());
+      }
+      if(status == "close"){
+        this.ticketClose = res.json();
+        console.log('close',res.json());
+      }
+      if(status == "reopen"){
+        this.ticketReopen = res.json();
+        console.log('reopen',res.json());
+      }
+    })
+  }
 }

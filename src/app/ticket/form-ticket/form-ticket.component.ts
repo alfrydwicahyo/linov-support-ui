@@ -47,7 +47,7 @@ export class FormTicketComponent implements OnInit {
   setArrayMessage(){
     const msg = this.formBuilder.group({
       sender: ['C'],
-      message: ['']
+      message: [''],
     })
     this.detailsForm.push(msg)
     console.log(this.ticketForm.value);
