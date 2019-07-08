@@ -47,10 +47,10 @@
           </p-header>
           <ng-template let-tkt pTemplate="item">
             <div class="ui-g ui-fluid ticket-item border">
-              <div class="ui-g-12 ui-md-3" style="text-align:center; background-color: #F08080;">
+              <div class="ui-g-12 ui-md-3" style="text-align:center; background-color: #09e668;">
                 <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="60" style="margin-top: 5px;"> -->
               </div>
-              <div class="ui-g-12 ui-md-9" style="background-color: #F08080;">
+              <div class="ui-g-12 ui-md-9" style="background-color: #09e668;">
                 <div class="ui-g-12 ui-sm-6" id="title"> <a routerLink="/ticket/detail/{{tkt.id}}"><b>{{tkt.title}}</b></a></div>
                 <div class="ui-g-12 ui-sm-6" id="name">{{tkt.ticketCode }} </div>                
                 <div class="ui-g-6 ui-sm-6" id="name">{{tkt.customer.name}} </div>                
@@ -70,10 +70,10 @@
           </p-header>
           <ng-template let-tkt_close pTemplate="item">
             <div class="ui-g ui-fluid car-item border">
-              <div class="ui-g-12 ui-md-3" style="text-align:center; background-color: #7CFC00">
+              <div class="ui-g-12 ui-md-3" style="text-align:center; background-color: #c4afaf">
                 <!-- <img src="data:image/jpeg;base64,{{tkt.customer.imageId.image}}" width="60" height="60" style="margin-top: 5px;"> -->
               </div>
-              <div class="ui-g-12 ui-md-9" style="background-color: #7CFC00">
+              <div class="ui-g-12 ui-md-9" style="background-color: #c4afaf">
                 <div class="ui-g-10 ui-sm-6" id="title"><a routerLink="/ticket/detail/{{tkt_close.id}}"><b>{{tkt_close.title}}</b></a></div>
                 <div class="ui-g-12 ui-sm-6" id="name">{{tkt_close.ticketCode }} </div>                  
                 <div class="ui-g-6 ui-sm-6" id="name">{{tkt_close.customer.name}} </div>
