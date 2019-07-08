@@ -25,6 +25,8 @@ import { TooltipModule } from 'primeng/primeng';
 import { TabViewModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/primeng';
 import { DataScrollerModule } from 'primeng/primeng';
+import { PaginatorModule } from 'primeng/primeng';
+import { OrderListModule } from 'primeng/primeng';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -99,6 +101,8 @@ import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
     StorageServiceModule,
     DataScrollerModule,
     InputTextareaModule,
+    PaginatorModule,
+    OrderListModule,
     AppRoutingModule
     
   ],

@@ -19,7 +19,7 @@ export class FormAgentComponent implements OnInit {
   
   msgs: Message[] = [];
   agentForm: FormGroup;
-  private url = 'http://192.168.43.76:8181/agent/';
+  private url = 'http://localhost:8181/agent/';
   // selectedFile: File = null;
   getClients: any[];
   

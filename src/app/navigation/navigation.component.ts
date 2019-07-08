@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class NavigationComponent implements OnInit {
 
   private name: String;
-  private email; String;
+  private email: String;
   private activeMenu : Boolean = true;
 
   constructor( private router: Router,@Inject(LOCAL_STORAGE) private storage: WebStorageService) { }

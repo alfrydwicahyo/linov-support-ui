@@ -36,7 +36,7 @@ const appRoutes: Routes = [
     { path: '', component: SigninClientComponent},
     { path: 'forgot-password', component: ForgetPasswordComponent},
 
-    { path: 'information', component: InformationComponent},
+    { path: 'change-password', component: InformationComponent},
     { path: 'ticket/detail/:id', component: DetailTicketComponent }
 ];
 
