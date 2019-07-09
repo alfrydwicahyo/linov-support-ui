@@ -62,7 +62,6 @@ export class SigninClientComponent implements OnInit {
 
     this.http.get(this.url + '/' + username + '/' + password)
     .subscribe( res=> {
-
       console.log(res.json());
       let id: String = res.json().id;
       let name: String = res.json().name;
@@ -70,25 +69,24 @@ export class SigninClientComponent implements OnInit {
       let role: String = res.json().role;
       let status: String = res.json().status;
 
-      if(status == "active"){
-        this.storage.set('id',id);
-        this.storage.set('name', name);
-        this.storage.set('email', email);
-        this.storage.set('role', role);
-  
-  
-        if(role == "customer"){
-          let companyId = res.json().companyId;
-          this.getDataCompany(companyId);
-          this.storage.set('companyId',companyId)
-        }
-  
-        this.router.navigate(['/home'])
-        console.log(this.storage);
-      }else{
-        console.log('anda tak boleh login');
-        console.log(this.storage);
+      this.storage.set('id',id);
+      this.storage.set('name', name);
+      this.storage.set('email', email);
+      this.storage.set('role', role);
+
+
+      if(role == "customer"){
+        let companyId = res.json().companyId;
+        this.getDataCompany(companyId);
+        this.storage.set('companyId',companyId)
       }
+
+      this.router.navigate(['/home'])
+      console.log(this.storage);
+
+    },
+    err => {
+      console.log(err.body());
     });
   }
   getDataCompany(idCompany){
