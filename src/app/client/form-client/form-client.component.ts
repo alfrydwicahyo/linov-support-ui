@@ -64,7 +64,7 @@ export class FormClientComponent implements OnInit {
       companyName: ['', Validators.required],
       address: ['', Validators.required],
       customers: this.formBuilder.array([]),
-      tes: this.formBuilder.array([])     
+      // tes: this.formBuilder.array([])     
     });
   }
 
