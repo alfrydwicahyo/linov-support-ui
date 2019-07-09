@@ -11,7 +11,12 @@
 <div class="ui-g header">
   <div class="ui-g-12 ui-sm-7 ui-md-10 ui-md-offset-1  ui-lg-6 ui-lg-offset-3 ui-xl-9 header-title">
     <div class="title">
-      <b>NEW MAPING</b>
+      <ng-container *ngIf="idUpdt == undefined; else updateTitle">
+        <b>NEW MAPING</b>
+      </ng-container>
+      <ng-template #updateTitle>
+        <b>Update Mapping</b>
+      </ng-template>
     </div>
   </div>
 </div>
