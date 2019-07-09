@@ -70,7 +70,7 @@ export class SigninClientComponent implements OnInit {
       let role: String = res.json().role;
       let status: String = res.json().status;
 
-      if(status == "acitve"){
+      if(status == "active"){
         this.storage.set('id',id);
         this.storage.set('name', name);
         this.storage.set('email', email);
