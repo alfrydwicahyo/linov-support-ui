@@ -14,19 +14,18 @@
   </div>
 </div>
 
-<form class="justify-content-center">
+<form [formGroup]="changeForm" class="form-change justify-content-center" (ngSubmit)="onFormChange(changeForm.value)">
   <table class="ui-g-12 ui-sm-9 ui-md-10 ui-md-offset-1 ui-lg-6 ui-lg-offset-3 ui-xl-10 table-bordered">
-    
-    <!-- {{agentForm.value | json}} -->
+    {{changeForm.value | json}}
     
     <div class="card-body">
       <span class="ui-float-label">
-        <input id="float-input" type="text" class="form-control"  pInputText > 
+        <input id="float-input" type="text" class="form-control" formControlName="oldPassword"  pInputText > 
         <label for="float-input">Old Password</label>
       </span>
       
       <span class="ui-float-label">
-        <input id="float-input" type="text" class="form-control"  pInputText> 
+        <input id="float-input" type="text" class="form-control" formControlName="newPassword"  pInputText> 
         <label for="float-input">New Password</label>
       </span>
     </div>
