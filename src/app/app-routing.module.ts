@@ -1,3 +1,4 @@
+import { StatusClientComponent } from './client/status-client/status-client.component';
 import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
 import { FormUpdtAgentComponent } from './agent/form-updt-agent/form-updt-agent.component';
 import { InformationComponent } from './information/information.component';
@@ -25,9 +26,11 @@ const appRoutes: Routes = [
     
     { path: 'client', component: DataClientComponent },
     { path: 'client/form-client', component: FormClientComponent },
+    { path: 'client/update-status/:id', component:StatusClientComponent },
     
     { path: 'ticket', component: DataTicketComponent },
     { path: 'ticket/form-ticket', component: FormTicketComponent },
+    { path: 'ticket/detail/:id', component: DetailTicketComponent },
     
     { path: 'mapping', component: DataPicComponent },
     { path: 'mapping/form-mapping', component: FormPicComponent},
@@ -35,9 +38,8 @@ const appRoutes: Routes = [
     
     { path: '', component: SigninClientComponent},
     { path: 'forgot-password', component: ForgetPasswordComponent},
-
+    
     { path: 'change-password', component: InformationComponent},
-    { path: 'ticket/detail/:id', component: DetailTicketComponent }
 ];
 
 @NgModule({

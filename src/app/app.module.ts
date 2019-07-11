@@ -50,6 +50,7 @@ import { InformationComponent } from './information/information.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormUpdtAgentComponent } from './agent/form-updt-agent/form-updt-agent.component';
 import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
+import { StatusClientComponent } from './client/status-client/status-client.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { DetailTicketComponent } from './detail-ticket/detail-ticket.component';
     InformationComponent,
     FooterComponent,
     FormUpdtAgentComponent,
-    DetailTicketComponent
+    DetailTicketComponent,
+    StatusClientComponent
   ],
   
   imports: [

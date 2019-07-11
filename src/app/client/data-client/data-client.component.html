@@ -54,7 +54,7 @@
           <p-column field="address" header="Address" [sortable]="true"></p-column>
           <p-column field="Action" header="Action" [style]="{'width':'150px'}">    
             <ng-template type="body" let-col let-client="rowData" let-ri="rowIndex" pTemplate>
-              <button pButton type="button" icon="fa-pencil" class="ui-button-success" routerLink="/client/form-updt-client/{{client.id}}"></button>
+              <button pButton type="button" icon="fa-pencil" class="ui-button-success" routerLink="/client/form-client/{{client.id}}"></button>
               <button pButton type="button" (click)="confirmDeleteActive(client)" icon="fa-trash" class="ui-button-danger"></button>
             </ng-template>
           </p-column>
